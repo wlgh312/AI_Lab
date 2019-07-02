@@ -3,15 +3,11 @@ warnings.filterwarnings('ignore')
 import numpy as np
 import tensorflow as tf
 import vgg16
-import utils
 import cv2
-from skimage import io
-import matplotlib.pyplot as plt
-import keyboard
 from dd_nnutil_hallym3 import *
 from datetime import datetime
 
-magenta = (255, 0, 255)
+#magenta = (255, 0, 255)
 yellow = (0, 255, 255)
 font = cv2.FONT_ITALIC #FONT_HERSHEY_SCRIPT_SIMPLEX  # hand-writing style font
 
@@ -45,7 +41,7 @@ while True:
         height, width = img1.shape[:2]
         print('{} x {}'.format(width, height))
 
-        # crop  or scale ??
+        # crop
         img1 = img1[:, :, :3]
         print(img1.shape)
         img1c=centered_crop(img1, output_side_length=224)
@@ -55,8 +51,6 @@ while True:
         print(img1c.shape)
         img1r = img1c.reshape((1, 224, 224, 3))
         print(img1r.shape)
-        #if cv2.waitKey(0)==27:
-        #img = "test.jpg"
 
         feed_dict = {images:img1r}
         prob = sess.run(vgg.prob, feed_dict=feed_dict)
