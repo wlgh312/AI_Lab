@@ -2,4 +2,5 @@
 __pycache__out/
 .ipynb_checkpoints/
 out/
+result/
 *.npy
