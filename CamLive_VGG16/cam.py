@@ -9,7 +9,7 @@ from datetime import datetime
 
 #magenta = (255, 0, 255)
 yellow = (0, 255, 255)
-font = cv2.FONT_ITALIC #FONT_HERSHEY_SCRIPT_SIMPLEX  # hand-writing style font
+font = cv2.FONT_ITALIC
 
 def print_prob(prob, file_path):
     synset = [I.strip() for I in open(file_path).readlines()]
@@ -32,11 +32,10 @@ capture.set(4, 320)
 sess = tf.InteractiveSession()
 cnt = 0
 while True:
-    ret, img1 = capture.read()#카메라 캡쳐
+    ret, img1 = capture.read()
     cv2.imshow('cam',img1)
-    #cv2.imwrite('test.jpg', frame)#이미지저장
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    if cv2.waitKey(1) & 0xFF == ord('q'):#카메라 캡쳐
 
         height, width = img1.shape[:2]
         print('{} x {}'.format(width, height))
@@ -45,18 +44,14 @@ while True:
         img1 = img1[:, :, :3]
         print(img1.shape)
         img1c=centered_crop(img1, output_side_length=224)
-        cv2.imshow('captured',img1)
-        cv2.imshow('captured_crop',img1c)
 
-        print(img1c.shape)
+        #print(img1c.shape)
         img1r = img1c.reshape((1, 224, 224, 3))
-        print(img1r.shape)
+        #print(img1r.shape)
 
         feed_dict = {images:img1r}
         prob = sess.run(vgg.prob, feed_dict=feed_dict)
 
-        print(prob[0])
-        print(np.argmax(prob[0]))
         predstr = print_prob(prob[0], 'synset.txt')
         str2 = 'No.{}'.format(np.argmax(prob[0]))
 
@@ -67,7 +62,7 @@ while True:
 
         now = datetime.now() # current date and time
         date_time = now.strftime("%Y%m%d_%H%M%S")
-        fn1 = './out/{}_{}.png'.format(date_time, cnt)
+        fn1 = './out/{}_{}.png'.format(date_time, cnt)#저장되는 위치 및 이미지 파일 이름
         cv2.imwrite(fn1, img1)
         print(fn1)
         cnt = cnt+1
