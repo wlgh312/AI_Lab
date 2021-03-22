@@ -1,5 +1,4 @@
-# AI_Lab
-
+# 1. Object Recognition
 ## Progress
 * OpenCV를 이용한 카메라 이용 및 이미지 처리
 * Thonny 개발환경 사용
@@ -9,3 +8,6 @@
 ## Result
 <img height="200" src="https://github.com/wlgh312/AI_Lab/blob/master/CamLive_VGG16/out_examples/20190604_171747_12.png" /><br>
 <img height="200" src="https://github.com/wlgh312/AI_Lab/blob/master/CamLive_VGG16/out_examples/20190618_162304_10.png" />
+
+# 2. Deepfake detection challenge
+# 3. Something to Something
